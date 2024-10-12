@@ -6,6 +6,8 @@ import { Icons } from "@/components/icons"
 import { MainNav } from "@/components/main-nav"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { PenBox } from "lucide-react"
+import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs"
+import UserMenu from "@/components/user-menu"
 
 export function SiteHeader() {
   return (
@@ -22,9 +24,16 @@ export function SiteHeader() {
                   <PenBox size={18} />Create Event
               </Button>
             </Link>
+            <SignedOut >
+              <SignInButton forceRedirectUrl="/dashboard">
             <Button variant="outline">
               Login
             </Button>
+            </SignInButton>
+            </SignedOut>
+            <SignedIn>
+              <UserMenu />
+            </SignedIn>
             <ThemeToggle />
           </nav>
         </div>

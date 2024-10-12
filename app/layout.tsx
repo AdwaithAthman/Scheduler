@@ -1,14 +1,16 @@
 import { Outfit } from "next/font/google"
+
 import "@/styles/globals.css"
 import { Metadata } from "next"
 
 import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
+import ClerkProviderCustom from "@/components/clerk-provider"
+import { Footer } from "@/components/footer"
 import { SiteHeader } from "@/components/site-header"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
-import { Footer } from "@/components/footer"
 
 export const metadata: Metadata = {
   title: {
@@ -35,7 +37,7 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <>
+    <ClerkProviderCustom>
       <html lang="en" suppressHydrationWarning>
         <head />
         <body
@@ -48,8 +50,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <div className="relative flex min-h-screen flex-col">
               <SiteHeader />
               <div className="h-[50rem] w-full bg-background dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative flex items-center justify-center">
-              <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
-              <div className="flex-1">{children}</div>
+                <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+                <div className="flex-1">{children}</div>
               </div>
               <Footer />
             </div>
@@ -57,6 +59,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
           </ThemeProvider>
         </body>
       </html>
-    </>
+    </ClerkProviderCustom>
   )
 }
