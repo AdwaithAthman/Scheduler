@@ -8,8 +8,10 @@ import { ThemeToggle } from "@/components/theme-toggle"
 import { PenBox } from "lucide-react"
 import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs"
 import UserMenu from "@/components/user-menu"
+import { checkUser } from "@/lib/checkUser"
 
-export function SiteHeader() {
+export async function SiteHeader() {
+  await checkUser();
   return (
     <header className="bg-background sticky top-0 z-40 w-full border-b">
       <div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
